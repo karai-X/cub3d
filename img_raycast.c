@@ -1,37 +1,37 @@
 #include "cub3d.h"
 
-
-void put_1line(t_all *all, int i, double wallStripHeight, long long color)
+void	put_1line(t_all *all, int i, double wallStripHeight, long long color)
 {
-	int j;
-	int stop;
+	int	j;
+	int	stop;
 
 	j = WIND_HEIGHT / 2 - ceil(wallStripHeight) / 2;
 	if (j < 0)
 		j = 0;
 	stop = ceil(wallStripHeight) + j;
-	while(j < WIND_HEIGHT && j < stop)
+	while (j < WIND_HEIGHT && j < stop)
 	{
 		my_mlx_pixel_put(&(all->img), i, j, color);
 		j += 1;
 	}
 }
 
-void img_raycast(t_all *all)
+void	img_raycast(t_all *all)
 {
-	int i;
-	double ray_angle;
-	double hd;
-	double vd;
-	double stp_ang;
-	double wallStripHeight ;
+	int		i;
+	double	ray_angle;
+	double	hd;
+	double	vd;
+	double	stp_ang;
+	double	wallStripHeight;
+	double	perpDistance;
 
 	ray_angle = all->player->ang + (FOV_ANGLE / 2);
 	if (ray_angle > 360)
 		ray_angle -= 360;
 	stp_ang = (double)FOV_ANGLE / (double)WIND_WIDTH;
 	i = 0;
-	while(i < WIND_WIDTH)
+	while (i < WIND_WIDTH)
 	{
 		printf("ray angle %lf\n", ray_angle);
 		hd = horz_dist(all, ray_angle);
@@ -39,16 +39,18 @@ void img_raycast(t_all *all)
 		// printf("%lf %lf\n", hd, vd);
 		if (vd < 0)
 		{
-			wallStripHeight = (TILE_SIZE / hd) * all->dPP;
+			perpDistance = hd * cos(cnv_rad(ray_angle - all->player->ang));
+			wallStripHeight = ((double)TILE_SIZE / perpDistance) * all->dPP;
 			if (0 <= ray_angle && ray_angle < 180)
 				put_1line(all, i, wallStripHeight, 0x00FF0000);
 			else
 				put_1line(all, i, wallStripHeight, 0x0000FF00);
 			// printf("1 %lf\n", hd);
 		}
-		else if(hd < 0)
+		else if (hd < 0)
 		{
-			wallStripHeight = (TILE_SIZE / vd) * all->dPP;
+			perpDistance = vd * cos(cnv_rad(ray_angle - all->player->ang));
+			wallStripHeight = (TILE_SIZE / perpDistance) * all->dPP;
 			if (90 <= ray_angle && ray_angle < 270)
 				put_1line(all, i, wallStripHeight, 0x000000FF);
 			else
@@ -57,7 +59,8 @@ void img_raycast(t_all *all)
 		}
 		else if (hd <= vd)
 		{
-			wallStripHeight = (TILE_SIZE / hd) * all->dPP;
+			perpDistance = hd * cos(cnv_rad(ray_angle - all->player->ang));
+			wallStripHeight = ((double)TILE_SIZE / perpDistance) * all->dPP;
 			if (0 <= ray_angle && ray_angle < 180)
 				put_1line(all, i, wallStripHeight, 0x00FF0000);
 			else
@@ -66,7 +69,8 @@ void img_raycast(t_all *all)
 		}
 		else
 		{
-			wallStripHeight = (TILE_SIZE / vd) * all->dPP;
+			perpDistance = vd * cos(cnv_rad(ray_angle - all->player->ang));
+			wallStripHeight = (TILE_SIZE / perpDistance) * all->dPP;
 			if (90 <= ray_angle && ray_angle < 270)
 				put_1line(all, i, wallStripHeight, 0x000000FF);
 			else

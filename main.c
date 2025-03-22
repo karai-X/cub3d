@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:56:01 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 14:29:20 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/22 15:33:49 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
 
 	char* grid[] = {
 		"1111111",
-		"1010101",
+		"1010011",
 		"1000001",
 		"1000011",
 		"1111111"
@@ -37,7 +37,7 @@ int main()
 	all->map->height = 5;
 	all->map->wind_width = all->map->width * TILE_SIZE;
 	all->map->wind_height = all->map->height * TILE_SIZE;
-	all->player->ang = 0;
+	all->player->ang = 98;
 	all->dPP = (double)(WIND_WIDTH / 2) / tan(cnv_rad(FOV_ANGLE / 2));
 	printf("px py %lf %lf\n", all->player->px, all->player->py);
 	initialize_window(all);
