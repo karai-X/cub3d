@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:25:20 by karai             #+#    #+#             */
-/*   Updated: 2025/03/20 21:06:27 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/22 14:28:14 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_map
 	char *tex_ea;    // 東向きのテクスチャパス
 	int floor_color; // 床の色 (RGB)
 	int ceil_color;  // 天井の色 (RGB)
+	int wind_width;
+	int wind_height;
 }				t_map;
 
 typedef struct s_ray
