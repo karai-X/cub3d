@@ -6,51 +6,53 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:56:01 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 15:33:49 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/22 19:00:07 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main()
+int	loop_function(t_all *all)
 {
-	t_all all[1];
-	double angle = 46;
+	update(all, all->player);
+	img_raycast(all);
+}
 
-	char* grid[] = {
-		"1111111",
-		"1010011",
-		"1000001",
-		"1000011",
-		"1111111"
-	};
-	all->map->grid = (char**)malloc(sizeof(char*) * 6);
-	for (int i = 0; i<5; i ++)
+int	main(void)
+{
+	t_all	all[1];
+	double	angle;
+	char	*grid[] = {"1111111", "1010011", "1000001", "1000011", "1111111"};
+
+	angle = 46;
+	all->map->grid = (char **)malloc(sizeof(char *) * 6);
+	for (int i = 0; i < 5; i++)
 	{
-		all->map->grid[i] = (char*)malloc(sizeof(char) * 10);
+		all->map->grid[i] = (char *)malloc(sizeof(char) * 10);
 		all->map->grid[i] = strdup(grid[i]);
 		printf("%s\n", all->map->grid[i]);
 	}
-	all->player->px = TILE_SIZE * 3 + 16;
-	all->player->py = TILE_SIZE * 2 + 16;
+	init_player(all->player);
+	init_map(all->map);
 	all->map->width = 7;
 	all->map->height = 5;
 	all->map->wind_width = all->map->width * TILE_SIZE;
 	all->map->wind_height = all->map->height * TILE_SIZE;
-	all->player->ang = 98;
 	all->dPP = (double)(WIND_WIDTH / 2) / tan(cnv_rad(FOV_ANGLE / 2));
 	printf("px py %lf %lf\n", all->player->px, all->player->py);
 	initialize_window(all);
-	img_raycast(all);
-	// printf("%lf\n", vert_dist(all, 193));
-	// printf("%lf\n", horz_dist(all, 23));
-	// for(int i= 0; i < 100; i++)
+	mlx_hook(all->mlx_win, 17, 0, map_close, all);
+	// mlx_hook(all->mlx_win, X_EVENT_KEY_PRESS, 1L << 0, &ft_key_hook, all);
+	// mlx_hook(all->mlx_win, X_EVENT_KEY_RELEASE, (1L << 1), &ft_key_release,
+	// 	all);
+	mlx_key_hook(all->mlx_win, ft_key_hook, all);
+	// mlx_hook(all->mlx_win, 3, 1L << 1, ft_key_release, all);
+	mlx_loop_hook(all->mlx, (void *)loop_function, all);
+	mlx_loop(all->mlx);
+	// while(1)
 	// {
-	// 	my_mlx_pixel_put(&(all->img), 5+i, 30, 0x00FF0000);
+	// 	mlx_do_sync(all->mlx);
+	// 	update(all, all->player);
+	// 	img_raycast(all);
 	// }
-	// mlx_put_image_to_window(all->mlx, all->mlx_win, all->img.img, 0, 0);
-	while(1)
-	{
-
-	}
 }

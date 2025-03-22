@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:19:37 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 15:18:30 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/22 16:08:02 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ double horz_dist(t_all all[1], double angle)
 	if (0 <= angle && angle < 180)
 	{
 		Ay = (int)all->player->py / 32 * 32;
-		Ax = all->player->px + ((Ay - all->player->py) / tan(cnv_rad(360 - angle)));
-		dx = TILE_SIZE / tan(cnv_rad(angle));
+		Ax = all->player->px + ((Ay - all->player->py) / tan(M_2PI - angle));
+		dx = TILE_SIZE / tan(angle);
 		dy = -TILE_SIZE;
 	}
 	else
 	{
 		Ay = ((int)all->player->py / 32 + 1) * 32;
-		Ax = all->player->px + ((Ay - all->player->py) / tan(cnv_rad(360 - angle)));
-		dx = -TILE_SIZE / tan(cnv_rad(angle));
+		Ax = all->player->px + ((Ay - all->player->py) / tan(M_2PI - angle));
+		dx = -TILE_SIZE / tan(angle);
 		dy = TILE_SIZE;
 	}
 	get_map_horz_idx(Ax, Ay, angle, hit_ij);

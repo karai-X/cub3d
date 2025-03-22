@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:15:48 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 15:20:46 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/22 16:08:45 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ double	vert_dist(t_all all[1], double angle)
 	if ((90 <= angle && angle < 270))
 	{
 		Ax = (int)all->player->px / 32 * 32;
-		Ay = all->player->py - ((Ax - all->player->px) * tan(cnv_rad(angle)));
-		dy = TILE_SIZE * tan(cnv_rad(angle));
+		Ay = all->player->py - ((Ax - all->player->px) * tan(angle));
+		dy = TILE_SIZE * tan(angle);
 		dx = -TILE_SIZE;
 	}
 	else
 	{
 		Ax = ((int)all->player->px / 32 + 1) * 32;
-		Ay = all->player->py - ((Ax - all->player->px) * tan(cnv_rad(angle)));
-		dy = -TILE_SIZE * tan(cnv_rad(angle));
+		Ay = all->player->py - ((Ax - all->player->px) * tan(angle));
+		dy = -TILE_SIZE * tan(angle);
 		dx = TILE_SIZE;
 	}
 	get_map_vert_idx(Ax, Ay, angle, hit_ij);

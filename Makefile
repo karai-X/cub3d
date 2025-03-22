@@ -11,6 +11,8 @@ SRCS = main.c\
 		hit_vert.c\
 		utility_mlx.c\
 		img_raycast.c\
+		init.c\
+		update.c\
 
 OBJS = $(SRCS:.c=.o)
 
