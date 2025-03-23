@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:38:35 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 19:24:13 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/23 10:13:22 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int	ft_key_hook(int keycode, t_all *all)
 	if (keycode == ESCAPE)
 		exit(0);
 	player = all->player;
-	player->ang += player->turnDirection * player->rotSpeed;
 	if (keycode == 'w')
 	{
 		newPlayerX = player->px + cos(player->ang) * player->moveSpeed;
@@ -153,5 +152,6 @@ int	ft_key_hook(int keycode, t_all *all)
 		player->px = newPlayerX;
 		player->py = newPlayerY;
 	}
-	printf("px py %lf %lf\n", player->px, player->py);
+	player->ang =normalize_rad(player->ang);
+	printf("px py %lf %lf %lf\n", player->px, player->py, player->ang * 180 / M_PI);
 }

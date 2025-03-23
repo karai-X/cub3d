@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:54:22 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 19:13:05 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/23 11:13:46 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void init_player(t_player *player)
 {
-	player->px = TILE_SIZE * 3 + 16;
-	player->py = TILE_SIZE * 2 + 16;
-	player->ang = cnv_rad(30);
+	player->px = 135;
+	player->py = 75;
+	player->ang = cnv_rad(45);
 	player->turnDirection = 0;
 	player->walkDirection = 0;
 	player->moveSpeed = 4.0;

@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 16:46:46 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 17:43:17 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/23 09:35:37 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	is_WallInside(t_all *all, double x, double y)
 
 	idx_x = ceil(x) / TILE_SIZE;
 	idx_y = ceil(y) / TILE_SIZE;
-	if (idx_x < 0 || idx_x > all->map->width || idx_y < 0
-		|| idx_y > all->map->height)
+	if (idx_x < 1 || idx_x > all->map->width - 1 || idx_y < 1
+		|| idx_y > all->map->height - 1)
 		return (true);
 	if (all->map->grid[idx_y][idx_x] == '1')
 		return (true);

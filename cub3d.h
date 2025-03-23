@@ -6,7 +6,7 @@
 /*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:25:20 by karai             #+#    #+#             */
-/*   Updated: 2025/03/22 18:59:16 by karai            ###   ########.fr       */
+/*   Updated: 2025/03/23 10:25:08 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define TILE_SIZE 32
+# define TILE_SIZE 30
 # define WIND_HEIGHT 480
 # define WIND_WIDTH 640
 # define FOV_ANGLE 60
+# define SCALE 0.8
 # define M_PI 3.14159265358979323846
-# define M_2PI 6.28318530717958623199
+# define M_2PI   6.28318530717958623199
+#define M_1by2PI 1.57079632679489655799
+#define M_3by2PI 4.71238898038468967399
 
 # define TURN_LEFT -1
 # define TURN_RIGHT 1
